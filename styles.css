@@ -22,13 +22,6 @@ body {
   grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-/* Styling for header */
-h1 {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
 /* Styling for calculator buttons  */
 #calculator-container > button {
     cursor: pointer;
