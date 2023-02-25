@@ -8,16 +8,20 @@ const upperContainer = document.querySelector('[data-previous-operand]');
 const lowerContainer = document.querySelector('[data-current-operand]');
 
 //Output for numbers and assign the innerText to values
-numberButtons.forEach(button => {
-    button.addEventListener('click', () => {        
-        lowerContainer.append(button.innerText);
-        button.value = button.innerText;       
-        // console.log(button.innerText);
-        // console.log(button.value);
-        // console.log(lowerContainer.innerText);
+function numberbtns () {
+    numberButtons.forEach(button => {
+        button.addEventListener('click', () => { 
+                
+            lowerContainer.append(button.innerText);
+                
+            // console.log(button.innerText);
+            console.log(button.value);
+            // console.log(lowerContainer.innerText);
+        })
     })
-})
-
+    return button.value = button.innerText;
+}
+numberbtns();
 // Output for operators
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {        
@@ -25,7 +29,7 @@ operationButtons.forEach(button => {
         // console.log(button.value);
         // console.log(button.innerText);
         // console.log(lowerContainer.innerText);
-        button.disabled = true;
+        //button.disabled = true;
     })
 });
 
