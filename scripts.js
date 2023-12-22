@@ -6,18 +6,20 @@ const display = document.querySelector('#display');
 
 let storeFirstOperand = null;
 let storeCurrentOperand = null;
+let storeSolution = null;
 let storeOperator = null;
 
 
-// Store & display operand and operator 
+// Store & display operand and operator && turn string to number
 function displayOperandClicked (e) {
     display.textContent += e.target.textContent;
 }
 function displayOperatorClicked (e) {
-    storeFirstOperand = display.textContent
+    storeFirstOperand = display.textContent;
     storeFirstOperand = parseFloat(storeFirstOperand);
-    storeOperator = e.target;
+    storeOperator = e.target.textContent;
     display.textContent += e.target.textContent;
+    return storeOperator;
 }
 operands.forEach(operand => {
     operand.addEventListener('click', displayOperandClicked);
@@ -27,9 +29,17 @@ operators.forEach(operator => {
 })
 // End
 
-// Function for computation & handleClick to run computation
-function compute () {
-
+// Function for computations & handleClick & symbol transformation
+function compute (storeOperator) {
+    if (storeOperator == '+') {
+        storeSolution = storeFirstOperand + storeCurrentOperand;
+    } else if (storeOperator == '-') {
+        storeOperator = storeFirstOperand - storeCurrentOperand;
+    } else if (storeOperator == '/') {
+        storeOperator = storeFirstOperand / storeCurrentOperand;
+    } else if (storeOperator == 'x') {
+        storeOperator = storeFirstOperand * storeCurrentOperand;
+    }
 }
 
 
