@@ -15,12 +15,14 @@ function displayOperandClicked (e) {
     display.textContent += e.target.textContent;
 }
 function displayOperatorClicked (e) {
-    storeFirstOperand = display.textContent;
-    storeFirstOperand = parseFloat(storeFirstOperand);
-    storeOperator = e.target.textContent;
-    display.textContent += e.target.textContent;
+    storeFirstOperand = display.textContent; // Stores displayed numbers
+    storeFirstOperand = parseFloat(storeFirstOperand); //Turns into an integer
+    storeOperator = e.target.textContent; // Stores the clicked operator
+    display.textContent += e.target.textContent; // Display on screen
     return storeOperator;
 }
+
+
 operands.forEach(operand => {
     operand.addEventListener('click', displayOperandClicked);
 })
@@ -29,7 +31,7 @@ operators.forEach(operator => {
 })
 // End
 
-// Function for computations & handleClick & symbol transformation
+// Function for computations & handleClick & operator transformation from string to symbol
 function compute (storeOperator) {
     if (storeOperator == '+') {
         storeSolution = storeFirstOperand + storeCurrentOperand;
@@ -41,6 +43,8 @@ function compute (storeOperator) {
         storeOperator = storeFirstOperand * storeCurrentOperand;
     }
 }
+equalsTo.addEventListener('click', compute);
+// End
 
 
 
