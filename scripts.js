@@ -4,45 +4,61 @@ const equalsTo = document.querySelector('#equals-to');
 const clearAll = document.querySelector('#clear-all');
 const display = document.querySelector('#display');
 
-let storeFirstOperand = null;
-let storeCurrentOperand = null;
+let initialOperand = null;
+let currentOperand = null;
 let storeSolution = null;
 let storeOperator = null;
 
 
 // Store & display operand and operator && turn string to number
-function displayOperandClicked (e) {
+function displayBtnClicked (e) {
     display.textContent += e.target.textContent;
 }
-function displayOperatorClicked (e) {
-    storeFirstOperand = display.textContent; // Stores displayed numbers
-    storeFirstOperand = parseFloat(storeFirstOperand); //Turns into an integer
+function handleOperator (e) {
+    initialOperand = display.textContent; // Stores displayed numbers
     storeOperator = e.target.textContent; // Stores the clicked operator
+    console.log(storeOperator);
     display.textContent += e.target.textContent; // Display on screen
+    currentOperand = e.target.textContent;
+    console.log(currentOperand)
     return storeOperator;
 }
 
+// function handleCurrentOperand () {
+//     currentOperand = display.textContent;
+//     return currentOperand;
+// }
+
 
 operands.forEach(operand => {
-    operand.addEventListener('click', displayOperandClicked);
+    operand.addEventListener('click', displayBtnClicked);
 })
 operators.forEach(operator => {
-    operator.addEventListener('click', displayOperatorClicked);
+    operator.addEventListener('click', handleOperator);
 })
 // End
 
 // Function for computations & handleClick & operator transformation from string to symbol
-function compute (storeOperator) {
+function compute (storeOperator, currentOperand, initialOperand) {
+    initialOperand = parseFloat(initialOperand); //Turns into an integer
+    currentOperand = parseFloat(currentOperand);
+
     if (storeOperator == '+') {
-        storeSolution = storeFirstOperand + storeCurrentOperand;
+        storeSolution = initialOperand + currentOperand;
+        display.textContent = storeSolution;
     } else if (storeOperator == '-') {
-        storeOperator = storeFirstOperand - storeCurrentOperand;
+        storeSolution = initialOperand - currentOperand;
+        display.textContent = storeSolution;
     } else if (storeOperator == '/') {
-        storeOperator = storeFirstOperand / storeCurrentOperand;
+        storeSolution = initialOperand / currentOperand;
+        display.textContent = storeSolution;
     } else if (storeOperator == 'x') {
-        storeOperator = storeFirstOperand * storeCurrentOperand;
+        storeSolution = initialOperand * currentOperand;
+        display.textContent = storeSolution;
     }
+    return storeSolution;
 }
+
 equalsTo.addEventListener('click', compute);
 // End
 
