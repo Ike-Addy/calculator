@@ -1,6 +1,73 @@
-.current-display, .computed-display {
-    width: 5rem;
-    height: 2rem;
-    border: 2px solid black;
-    background-color: lightgrey;
+/* Applies box size, font family, and weight to all elements new & old */
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: normal;
 }
+
+/* Applies background color to entire page */
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(243, 248, 248);
+}
+
+/* Styling for entire calculator */
+#calculator-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+/* Styling for calculator buttons  */
+#calculator-container > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgb(208, 238, 243, .75);
+}
+
+/* Change color on hover */
+#calculator-container > button:hover {
+    background-color: rgb(243, 239, 239, .75);
+}
+
+/* Increase the size of span two classes to take up 2 columns */
+.span-two {
+    grid-column: span 2;
+}
+
+/* Styling for output containers */
+.output {
+    /* Fills entire width of column */
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+
+    /* Wraps numbers in output to prevent overflow out of grid */
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+
+/* Styling for top output container */
+.output .previous-screen {
+    color: rgb(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+/* Styling for bottom output container */
+.output .current-screen {
+    color: white;
+    font-size: 2.5rem;
+}
+
